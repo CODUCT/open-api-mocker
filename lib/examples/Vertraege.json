@@ -1,0 +1,206 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Verträge"
+  },
+  "servers": [
+    {
+      "url": "http://messwerte.swagger.io/api"
+    }
+  ],
+  "x-external-processor": {
+    "path": "../examples/exampleJS.js"
+  },
+  "paths": {
+    "/powercommerce/csit3/sagws/portal/vertraege.v1": {
+      "post": {
+        "description": "Creates a new Verträge.  Duplicates are allowed",
+        "operationId": "addVerträge",
+        "requestBody": {
+          "description": "Add Verträge",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/vertraegeSendObject"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Verträge response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/response"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "vertraegeSendObject": {
+        "required": [
+          "CorrelationId",
+          "Vertraege",
+          "IdentifikationsmerkmalId"
+        ],
+        "properties": {
+          "CorrelationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "Auftragsnummer": {
+            "type": "string"
+          },
+          "Vertraege": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vertraege"
+            }
+          },
+          "IdentifikationsmerkmalId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "Vertraege": {
+        "type": "object",
+        "required": [
+          "VertragId",
+          "RechnungseinheitId",
+          "Beginn",
+          "Nummer",
+          "Vertragsabschlussdatum",
+          "Vertragsstatus",
+          "GeschaeftsbereichsBezeichnung",
+          "Vertragsdetails"
+        ],
+        "properties": {
+          "VertragId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "RechnungseinheitId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "Beginn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Nummer": {
+            "type": "string"
+          },
+          "Vertragsabschlussdatum": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Vertragsstatus": {
+            "type": "number"
+          },
+          "GeschaeftsbereichsBezeichnung": {
+            "type": "string"
+          },
+          "Vertragsdetails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "VertragsdetailId",
+                "Beginn",
+                "Tarif"
+              ],
+              "properties": {
+                "VertragsdetailId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "Beginn": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "Tarif": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "response": {
+        "required": [
+          "CorrelationId",
+          "Vertraege"
+        ],
+        "properties": {
+          "CorrelationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "Vertraege": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "Status",
+                "VertragId",
+                "RechnungseinheitId",
+                "GeschaeftsbereichsBezeichnung"
+              ],
+              "properties": {
+                "Status": {
+                  "type": "number",
+                  "value": 201
+                },
+                "VertragId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "RechnungseinheitId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "GeschaeftsbereichsBezeichnung": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "number",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
