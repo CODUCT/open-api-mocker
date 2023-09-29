@@ -113,6 +113,69 @@ The _x-faker_ extension accepts values in 3 forms:
 *NOTE*: To avoid new fake data from being generated on every call, up to 10 responses per endpoint are cached
 based on the incoming query string, request body and headers.
 
+### x-external-processor
+
+With the _x-external-processor_ extension, you can specify a command to be executed and if specified intercept the response with the output of the command.
+
+The _x-external-processor_ will be read from the route definition inside the OpenAPI schema like so:
+
+```json
+    "paths": {
+      "/books": {
+        "get": {
+          "summary": "Get a list of books",
+          "responses": {
+            "200": {
+              "description": "List of books retrieved successfully",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 1,
+                      "title": "The Great Gatsby",
+                      "author": "F. Scott Fitzgerald"
+                    },
+                    {
+                      "id": 2,
+                      "title": "To Kill a Mockingbird",
+                      "author": "Harper Lee"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "x-external-processor": {
+            "path": "../examples/exampleJS.js"
+          }
+        }
+      }
+    }
+```
+
+The _x-external-processor_ file has to contain a function that will then be called from the OpenAPI Mocker via a middleware. The function will receive the request and response objects from the ExpressJS framework and will be able to modify the response object.
+
+```javascript
+module.exports = (req, res) => {
+    let isIntercepted = true;
+
+
+    // Code that gets executed when request is received belongs here
+    // Response can look like this:
+
+    let response = {
+        "status": "ok",
+        "message": "This is a mocked response",
+        "data": req.body
+    }
+
+
+    return { response, isIntercepted }
+};
+```
+
+If the _isIntercepted_ flag is set to true, the response will be intercepted and the response object will be returned to the client. If the flag is set to false, the response will be handled by the OpenAPI Mocker as usual.
+
 ### x-count
 The _x-count_ extension has effect only when used on an `array` type property.
 If encountered, OpenAPI Mocker will return an array with the given number of elements instead of the default of an
