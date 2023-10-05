@@ -155,8 +155,14 @@ The _x-external-processor_ will be read from the route definition inside the Ope
 
 The _x-external-processor_ file has to contain a function that will then be called from the OpenAPI Mocker via a middleware. The function will receive the request and response objects from the ExpressJS framework and will be able to modify the response object.
 
+```typescript
+interface ExternalProcessor {
+    (validationPackage: {	uri: string, httpMethod: string, requestBody: any}): { response: any, isIntercepted: boolean }
+}
+```
+
 ```javascript
-module.exports = (req, res) => {
+module.exports = (validationPackage) => {
     let isIntercepted = true;
 
 
@@ -166,7 +172,7 @@ module.exports = (req, res) => {
     let response = {
         "status": "ok",
         "message": "This is a mocked response",
-        "data": req.body
+        "data": validationPackage.body
     }
 
 

@@ -10,3 +10,4 @@ coverage/
 # Editor configuration files
 .idea/
 lib/.DS_Store
+.DS_Store
