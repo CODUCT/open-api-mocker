@@ -61,10 +61,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://jormaechea@github.com/jormaechea/open-api-mocker.git"
+    "url": "git+https://github.com/CODUCT/open-api-mocker.git"
   },
   "bugs": {
     "url": "https://github.com/jormaechea/open-api-mocker/issues"
   },
-  "homepage": "https://github.com/jormaechea/open-api-mocker#readme"
+  "homepage": "https://github.com/jormaechea/open-api-mocker#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
