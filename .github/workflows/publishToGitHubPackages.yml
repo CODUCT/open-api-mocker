@@ -1,0 +1,22 @@
+name: Publish to GitHub Packages
+on:
+  workflow_dispatch
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - run: npm install
+      - run: |
+          echo @lexacode:https://npm.pkg.github.com/ > build/.npmrc
+          echo '//npm.pkg.github.com/:_authToken=${ACCESS_TOKEN}' >> build/.npmrc
+      - run: npm publish
+        working-directory: ./lib
+        env:
+          NPM_TOKEN: ${{ secrets.ACCESS_TOKEN }}
