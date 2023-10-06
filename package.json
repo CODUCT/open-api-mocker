@@ -1,6 +1,6 @@
 {
-  "name": "open-api-mocker",
-  "version": "2.0.0",
+  "name": "coduct-open-api-mocker",
+  "version": "1.0.0",
   "description": "A mock server based in Open API Specification",
   "main": "lib/open-api-mocker.js",
   "bin": {
@@ -24,7 +24,7 @@
     "mocking",
     "mock-server"
   ],
-  "author": "Joaquin Ormaechea",
+  "author": "Joaquin Ormaechea & Coduct GmbH",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.41.0",
@@ -64,9 +64,9 @@
     "url": "git+https://github.com/CODUCT/open-api-mocker.git"
   },
   "bugs": {
-    "url": "https://github.com/jormaechea/open-api-mocker/issues"
+    "url": "https://github.com/CODUCT/open-api-mocker/issues"
   },
-  "homepage": "https://github.com/jormaechea/open-api-mocker#readme",
+  "homepage": "https://github.com/CODUCT/open-api-mocker#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   }
