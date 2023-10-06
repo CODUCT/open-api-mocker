@@ -15,6 +15,6 @@ jobs:
           echo @lexacode:https://npm.pkg.github.com/ > .npmrc
           echo '//npm.pkg.github.com/:_authToken=${ACCESS_TOKEN}' >> .npmrc
       - run: npm publish
-        working-directory: ./lib
+        working-directory: ./
         env:
           NPM_TOKEN: ${{ secrets.ACCESS_TOKEN }}
