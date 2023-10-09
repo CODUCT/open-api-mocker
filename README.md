@@ -13,29 +13,11 @@ An API mocker based in the OpenAPI 3.0 specification.
 ### Using npm
 
 ```
-npm i -g open-api-mocker
+npm install -g @coduct/open-api-mocker@1.0.0
 
 open-api-mocker -s my-schema.json -w
 
 open-api-mocker --help # To prompt every available setting.
-```
-
-### Using docker
-
-```
-docker run -v "$PWD/myschema.json:/app/schema.json" -p "5000:5000" jormaechea/open-api-mocker
-```
-
-Or to run an specific version
-
-```
-docker run -v "$PWD/myschema.json:/app/schema.json" -p "5000:5000" jormaechea/open-api-mocker:X.Y.Z`
-```
-
-You can set any parameter when running inside a docker container
-
-```
-docker run -v "$PWD/myschema.json:/app/schema.json" -p "3000:3000" jormaechea/open-api-mocker:X.Y.Z -s /app/schema.json -p 3000`
 ```
 
 ## Capabilities
