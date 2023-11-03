@@ -1,5 +1,5 @@
 {
-  "name": "@CODUCT/open-api-mocker",
+  "name": "@coductsolutions/open-api-mocker",
   "version": "1.0.0",
   "description": "A mock server based in Open API Specification",
   "main": "lib/open-api-mocker.js",
@@ -65,8 +65,5 @@
   "bugs": {
     "url": "https://github.com/CODUCT/open-api-mocker/issues"
   },
-  "homepage": "https://github.com/CODUCT/open-api-mocker#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  }
+  "homepage": "https://github.com/CODUCT/open-api-mocker#readme"
 }
