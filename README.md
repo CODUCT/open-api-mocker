@@ -15,6 +15,10 @@ An API mocker based in the OpenAPI 3.0 specification.
 ```
 npm install -g @coduct/open-api-mocker@1.0.0
 
+OR
+
+npm install -g git+ssh://github.com/CODUCT/open-api-mocker
+
 open-api-mocker -s my-schema.json -w
 
 open-api-mocker --help # To prompt every available setting.
