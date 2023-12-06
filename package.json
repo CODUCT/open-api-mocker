@@ -1,6 +1,6 @@
 {
   "name": "@coductsolutions/open-api-mocker",
-  "version": "1.0.1",
+  "version": "1.0.26",
   "description": "A mock server based in Open API Specification",
   "main": "lib/open-api-mocker.js",
   "bin": {
